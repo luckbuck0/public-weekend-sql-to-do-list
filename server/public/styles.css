@@ -92,7 +92,7 @@ header{
  .toDoDone{
      background-color: green;
      text-decoration: line-through;
-     margin-top: 90px;
+     margin-top: 30px;
     font-size: 20px;
 
  }
@@ -138,17 +138,17 @@ header{
  }
  
  .red{
-     margin-top: 100px;
-     height: 200px;
+     margin-top: 50px;
+     height: 280px;
      background-color: #d4262f;
      width: 800px;
      font-size: 80px;
      text-align: center;
      color: white;
-     padding-top: 100px;
+     padding-top: 140px;
  }
 
  .needToDo{
-    margin-top: 90px;
+    margin-top: 30px;
     font-size: 20px;
  }

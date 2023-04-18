@@ -18,32 +18,30 @@ router.get('/', (req, res) => {
    
   })
 
-router.post('/toDoList', (req, res) => {
- 
-  let date= req.body.date;
-  let things = req.body.todo;
-  let is_Complete=req.body.is_Complete
-
-  let sqlText = `
-    INSERT INTO "list"
-      ("date", "toDos")
-      VALUES
-      ($1, $2, $3);
-  `;
-  let sqlValues = [date, things,is_Complete]
+  router.post('/', (req, res) => {
+    console.log('POST /toDoList');
+    let date = req.body.date;
+    let todo = req.body.todo;
+    let is_Complete= req.body.is_Complete
+   
   
+    let sqlText = `
+      INSERT INTO "toDoList"
+        ("date", "todo","is_Complete")
+        VALUES
+        ($1, $2, $3);
+    `;
+    let sqlValues = [date, todo,is_Complete]
 
-  pool.query(sqlText, sqlValues)
-    .then((dbRes) => {
-     
-      res.sendStatus(201);
-    })
-    .catch((dbErr) => {
-      console.log('POST /list error:', dbErr);
-      res.sendStatus(500);
-    })
-})
-  
+    pool.query(sqlText, sqlValues)
+      .then((dbRes) => {
+        res.sendStatus(201);
+      })
+      .catch((dbErr) => {
+        console.log('POST /list error:', dbErr);
+        res.sendStatus(500);
+      })
+  })
 
 
 router.put('/:id', (req, res) => {

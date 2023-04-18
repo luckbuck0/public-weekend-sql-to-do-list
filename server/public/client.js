@@ -10,7 +10,8 @@ function onReady(){
 }
 
 function showToDos(){
-
+    let date=$('#date').val('')
+    let thingToDo=$('#thingToDo').val('')
     $.ajax({
       method: 'GET',
       url: '/toDoList'

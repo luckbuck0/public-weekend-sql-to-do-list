@@ -18,5 +18,81 @@ router.get('/', (req, res) => {
    
   })
 
+router.post('/toDoList', (req, res) => {
+ 
+  let date= req.body.date;
+  let things = req.body.todo;
+  let is_Complete=req.body.is_Complete
+
+  let sqlText = `
+    INSERT INTO "list"
+      ("date", "toDos")
+      VALUES
+      ($1, $2, $3);
+  `;
+  let sqlValues = [date, things,is_Complete]
+  
+
+  pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+     
+      res.sendStatus(201);
+    })
+    .catch((dbErr) => {
+      console.log('POST /list error:', dbErr);
+      res.sendStatus(500);
+    })
+})
+  
+
+
+router.put('/:id', (req, res) => {
+
+    let theIdToUpdate = req.params.id;
+  
+
+    let is_Complete = req.body.is_Complete;
+  
+    let sqlText = `
+      UPDATE "toDoList"
+        SET "is_Complete"=$1
+        WHERE "id"=$2;
+    `
+    let sqlValues = [is_Complete, theIdToUpdate];
+  
+    pool.query(sqlText, sqlValues)
+      .then((dbRes) => {
+        res.sendStatus(200);
+      })
+      .catch((dbErr) => {
+        console.log('PUT /treats/:id fail:', dbErr);
+        res.sendStatus(500);
+      })
+    
+  
+  })
+
+  router.delete('/:id', (req, res) => {
+
+    let theIdToDelete = req.params.id;
+
+    let sqlText = `
+      DELETE FROM "toDoList"
+        WHERE "id"=$1;
+    `
+    let sqlValues = [theIdToDelete]
+  
+    pool.query(sqlText, sqlValues)
+      .then((dbRes) => {
+    
+        res.sendStatus(200); 
+      })
+      .catch((dbErr) => {
+        console.log('delete /toDoList error:', dbErr);
+
+        res.sendStatus(500);
+      })
+  })
+
 
   module.exports = router;

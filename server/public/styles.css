@@ -91,6 +91,10 @@ header{
  
  .toDoDone{
      background-color: green;
+     text-decoration: line-through;
+     margin-top: 90px;
+    font-size: 20px;
+
  }
  
  .pad{

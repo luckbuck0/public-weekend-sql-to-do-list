@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const pool = require('/Users/LuckieBah/Documents/Coding/wk9/full-stack-treats/server/modules/pool');
+const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
     
     let sqlText = 'SELECT * FROM "toDoList";';
   
-
+    // Send a sql query to our database:
     pool.query(sqlText)
       .then((dbRes) => {
         let toDoList = dbRes.rows;
